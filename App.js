@@ -1,13 +1,13 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import Appbar from './src/components/Appbar'
-import MemoDetailScreen from './src/screens/MemoDetailScreen'
+import MemoEditScreen from './src/screens/MemoEditScreen'
 
 export default function App() {
   return (
     <View style={styles.container}>
       <Appbar />
-      <MemoDetailScreen />
+      <MemoEditScreen />
     </View>
   )
 }
