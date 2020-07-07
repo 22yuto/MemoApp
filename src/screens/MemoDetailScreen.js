@@ -20,7 +20,7 @@ export default function MemoDetailScreen() {
         </Text>
       </View>
 
-      <CircleButton color="white" style={styles.editButton}>+</CircleButton>
+      <CircleButton name={'\uf303'} color="white" style={styles.editButton} />
     </View>
   )
 }

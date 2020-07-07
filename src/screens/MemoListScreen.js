@@ -7,7 +7,7 @@ export default function MemoListScreen() {
   return (
     <View style={styles.container}>
       <MemoList />
-      <CircleButton>+</CircleButton>
+      <CircleButton name={'\uf067'} />
     </View>
   )
 }
