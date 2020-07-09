@@ -3,11 +3,11 @@ import { StyleSheet, View, TextInput } from 'react-native'
 
 import CircleButton from '../elements/CircleButton'
 
-export default function MemoEditScreen() {
+export default function MemoEditScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <TextInput style={styles.memoEditInput} multiline value="Hi" />
-      <CircleButton name={'\uf00c'} />
+      <CircleButton name={'\uf00c'} onPress={() => navigation.goBack()} />
     </View>
   )
 }

@@ -1,33 +1,31 @@
 import React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import {
+  StyleSheet, View, Text, TouchableHighlight,
+} from 'react-native'
 
-export default function MemoList() {
+export default function MemoList({ navigation }) {
   return (
     <View style={styles.memoList}>
-      <View style={styles.memoListItem}>
-        <Text style={styles.memoTitle}>講座のアイテム</Text>
-        <Text style={styles.memoDate}>2020/10/10</Text>
-      </View>
+      <TouchableHighlight onPress={() => navigation.navigate('MemoDetail')}>
+        <View style={styles.memoListItem}>
+          <Text style={styles.memoTitle}>講座のアイテム</Text>
+          <Text style={styles.memoDate}>2020/10/10</Text>
+        </View>
+      </TouchableHighlight>
 
-      <View style={styles.memoListItem}>
-        <Text style={styles.memoTitle}>講座のアイテム</Text>
-        <Text style={styles.memoDate}>2020/10/10</Text>
-      </View>
+      <TouchableHighlight onPress={() => navigation.navigate('MemoDetail')}>
+        <View style={styles.memoListItem}>
+          <Text style={styles.memoTitle}>講座のアイテム</Text>
+          <Text style={styles.memoDate}>2020/10/10</Text>
+        </View>
+      </TouchableHighlight>
 
-      <View style={styles.memoListItem}>
-        <Text style={styles.memoTitle}>講座のアイテム</Text>
-        <Text style={styles.memoDate}>2020/10/10</Text>
-      </View>
-
-      <View style={styles.memoListItem}>
-        <Text style={styles.memoTitle}>講座のアイテム</Text>
-        <Text style={styles.memoDate}>2020/10/10</Text>
-      </View>
-
-      <View style={styles.memoListItem}>
-        <Text style={styles.memoTitle}>講座のアイテム</Text>
-        <Text style={styles.memoDate}>2020/10/10</Text>
-      </View>
+      <TouchableHighlight onPress={() => navigation.navigate('MemoDetail')}>
+        <View style={styles.memoListItem}>
+          <Text style={styles.memoTitle}>講座のアイテム</Text>
+          <Text style={styles.memoDate}>2020/10/10</Text>
+        </View>
+      </TouchableHighlight>
     </View>
   )
 }

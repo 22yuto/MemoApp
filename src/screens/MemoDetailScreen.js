@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import CircleButton from '../elements/CircleButton'
 
-export default function MemoDetailScreen() {
+export default function MemoDetailScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View>
@@ -20,7 +20,7 @@ export default function MemoDetailScreen() {
         </Text>
       </View>
 
-      <CircleButton name={'\uf303'} color="white" style={styles.editButton} />
+      <CircleButton name={'\uf303'} color="white" style={styles.editButton} onPress={() => navigation.navigate('MemoEdit')} />
     </View>
   )
 }

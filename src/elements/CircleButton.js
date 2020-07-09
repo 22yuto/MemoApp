@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import {
+  StyleSheet, Text, View, TouchableHighlight,
+} from 'react-native'
 import * as Font from 'expo-font'
 import fontAwesome from '../../assets/fonts/fa-solid-900.ttf'
 
-export default function CircleButton({ style, color, name }) {
+export default function CircleButton({
+  style, color, name, onPress,
+}) {
   const [fontLoaded, setFontLoaded] = useState(false)
 
   useEffect(() => {
@@ -24,22 +28,27 @@ export default function CircleButton({ style, color, name }) {
   }
 
   return (
-    <View style={[styles.circleButton, style, { backgroundColor: bgColor }]}>
-      {
-        fontLoaded ? (
-          <Text style={[styles.circleButtonTitle, { color: textColor }]}>{name}</Text>
-        ) : null
-      }
-
-    </View>
+    <TouchableHighlight style={[styles.container, style]} onPress={onPress} underlayColor="transparent">
+      <View style={[styles.circleButton, { backgroundColor: bgColor }]}>
+        {
+          fontLoaded ? (
+            <Text style={[styles.circleButtonTitle, { color: textColor }]}>{name}</Text>
+          ) : null
+        }
+      </View>
+    </TouchableHighlight>
   )
 }
 
 const styles = StyleSheet.create({
-  circleButton: {
+  container: {
+    width: 48,
+    height: 48,
     position: 'absolute',
     bottom: 32,
     right: 32,
+  },
+  circleButton: {
     width: 40,
     height: 40,
     borderRadius: 24,

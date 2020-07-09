@@ -1,15 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   StyleSheet, View, TextInput, TouchableHighlight, Text,
 } from 'react-native'
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = () => {
+    console.log('コンソール')
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>ログイン</Text>
-      <TextInput style={styles.input} value="Email Adress" />
-      <TextInput style={styles.input} value="PassWord" />
-      <TouchableHighlight style={styles.button} onPress={() => { }} underlayColor="#c70f66">
+      <TextInput
+        style={styles.input}
+        name="email"
+        value={email}
+        onChangeText={text => setEmail(text)}
+        autoCapitalize="none"
+        autoCorrect={false}
+        placeholder="Email Address"
+      />
+      <TextInput
+        style={styles.input}
+        name="password"
+        value={password}
+        onChangeText={text => setPassword(text)}
+        autoCapitalize="none"
+        autoCorrect={false}
+        placeholder="Password"
+        secureTextEntry
+      />
+      <TouchableHighlight style={styles.button} underlayColor="#c70f66" onPress={handleSubmit}>
         <Text style={styles.buttonTitle}>ログインする</Text>
       </TouchableHighlight>
     </View>
