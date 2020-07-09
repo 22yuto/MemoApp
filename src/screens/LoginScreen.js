@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import firebase from 'firebase'
 import {
   StyleSheet, View, TextInput, TouchableHighlight, Text,
 } from 'react-native'
@@ -8,7 +9,11 @@ export default function LoginScreen({ navigation }) {
   const [password, setPassword] = useState('')
 
   const handleSubmit = () => {
-    console.log('コンソール')
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(() => {
+        navigation.navigate('Home')
+      })
+      .catch(error => console.log(error))
   }
 
   return (
