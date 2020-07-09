@@ -4,10 +4,18 @@ import MemoList from '../components/MemoList'
 import CircleButton from '../elements/CircleButton'
 
 export default function MemoListScreen({ navigation }) {
+  const handlePress = () => {
+    const { params } = navigation.state
+    navigation.navigate('MemoCreate', { currentUser: params.currentUser })
+  }
+
   return (
     <View style={styles.container}>
       <MemoList navigation={navigation} />
-      <CircleButton name={'\uf067'} onPress={() => navigation.navigate('MemoEdit')} />
+      <CircleButton
+        name={'\uf067'}
+        onPress={handlePress}
+      />
     </View>
   )
 }

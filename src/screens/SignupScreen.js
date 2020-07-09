@@ -10,7 +10,7 @@ export default function SignupScreen({ navigation }) {
 
   const handleSubmit = () => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(user => {
+      .then(() => {
         navigation.navigate('Home')
       })
       .catch(error => {

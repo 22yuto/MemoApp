@@ -2,12 +2,19 @@ import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import firebase from 'firebase'
 import MemoListScreen from './src/screens/MemoListScreen'
+import MemoCreateScreen from './src/screens/MemoCreateScreen'
 import MemoDetailScreen from './src/screens/MemoDetailScreen'
 import MemoEditScreen from './src/screens/MemoEditScreen'
 import LoginScreen from './src/screens/LoginScreen'
 import SignupScreen from './src/screens/SignupScreen'
 
 import ENV from './env.json'
+
+require('firebase/firestore')
+
+console.ignoredYellowBox = [
+  'Remote debugger is in a background tab which may cause apps to perform slowly. Fix this by foregrounding the tab (or opening it in a separate window).',
+];
 
 const firebaseConfig = {
   apiKey: ENV.FIREBASE_API_KEY,
@@ -26,6 +33,7 @@ const App = createStackNavigator({
   Login: { screen: LoginScreen },
   Signup: { screen: SignupScreen },
   Home: { screen: MemoListScreen },
+  MemoCreate: { screen: MemoCreateScreen },
   MemoDetail: { screen: MemoDetailScreen },
   MemoEdit: { screen: MemoEditScreen },
 }, {
