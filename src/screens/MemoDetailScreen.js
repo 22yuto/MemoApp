@@ -19,6 +19,10 @@ export default function MemoDetailScreen({ navigation }) {
     setMemo(params.memo)
   }, [])
 
+  const returnMemo = memoData => {
+    setMemo(memoData)
+  }
+
   return (
     <View style={styles.container}>
       <View>
@@ -42,7 +46,7 @@ export default function MemoDetailScreen({ navigation }) {
         name={'\uf303'}
         color="white"
         style={styles.editButton}
-        onPress={() => navigation.navigate('MemoEdit', { memo })}
+        onPress={() => navigation.navigate('MemoEdit', { memo, returnMemo })}
       />
     </View>
   )

@@ -15,12 +15,16 @@ export default function MemoEditScreen({ navigation }) {
   const handlePress = () => {
     const { currentUser } = firebase.auth()
     const db = firebase.firestore()
-    db.collection(`users/${currentUser.uid}/memos`).doc(memo.key)
+
+    db.collection(`users/${currentUser.uid}/memos`)
+      .doc(memo.key)
       .update({
         body: memo.body,
+        createdOn: firebase.firestore.Timestamp.now(),
       })
       .then(() => {
-        console.log('success!!')
+        navigation.state.params.returnMemo(memo)
+        navigation.goBack()
       })
       .catch(error => console.log(error))
   }
@@ -33,7 +37,6 @@ export default function MemoEditScreen({ navigation }) {
         value={memo.body}
         onChangeText={text => setMemo({ ...memo, body: text })}
       />
-      {console.log(memo)}
       <CircleButton name={'\uf00c'} onPress={handlePress} />
     </View>
   )

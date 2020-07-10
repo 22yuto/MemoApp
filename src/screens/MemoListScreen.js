@@ -11,8 +11,7 @@ export default function MemoListScreen({ navigation }) {
     const { currentUser } = firebase.auth()
     const db = firebase.firestore()
     db.collection(`users/${currentUser.uid}/memos`)
-      .get()
-      .then(snapshot => {
+      .onSnapshot(snapshot => {
         const memos = []
         snapshot.forEach(doc => {
           memos.push({ ...doc.data(), key: doc.id })
@@ -20,7 +19,17 @@ export default function MemoListScreen({ navigation }) {
         })
         setMemoList(memos)
       })
-      .catch(error => console.log(error))
+    /*
+    .then(snapshot => {
+      const memos = []
+      snapshot.forEach(doc => {
+        memos.push({ ...doc.data(), key: doc.id })
+        // 上記と同等 {body: 'test', createdOn: '2020/12/12', key: doc.id}
+      })
+      setMemoList(memos)
+    })
+    .catch(error => console.log(error))
+    */
   }, [])
 
   const handlePress = () => {
