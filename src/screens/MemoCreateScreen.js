@@ -15,10 +15,10 @@ export default function MemoCreateScreen({ navigation }) {
       body,
       createdOn: new Date(),
     })
-      .then(docRef => {
-        console.log(docRef.id)
+      .then(() => {
+        navigation.goBack()
       })
-      .catch(error => console.log(error))
+      .catch()
   }
 
   return (

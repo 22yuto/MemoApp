@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import firebase from 'firebase'
+import { StackActions, NavigationActions } from 'react-navigation'
 import {
-  StyleSheet, View, TextInput, TouchableHighlight, Text,
+  StyleSheet, View, TextInput, TouchableHighlight, Text, TouchableOpacity,
 } from 'react-native'
 
 export default function LoginScreen({ navigation }) {
@@ -11,9 +12,19 @@ export default function LoginScreen({ navigation }) {
   const handleSubmit = () => {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(() => {
-        navigation.navigate('Home')
+        const resetAction = StackActions.reset({
+          index: 0,
+          actions: [
+            NavigationActions.navigate({ routeName: 'Home' }),
+          ],
+        })
+        navigation.dispatch(resetAction)
       })
-      .catch(error => console.log(error))
+      .catch()
+  }
+
+  const handleSignup = () => {
+    navigation.navigate('Signup')
   }
 
   return (
@@ -41,6 +52,10 @@ export default function LoginScreen({ navigation }) {
       <TouchableHighlight style={styles.button} underlayColor="#c70f66" onPress={handleSubmit}>
         <Text style={styles.buttonTitle}>ログインする</Text>
       </TouchableHighlight>
+
+      <TouchableOpacity onPress={handleSignup} style={styles.signup}>
+        <Text style={styles.signupText}>メンバー登録する</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -76,5 +91,12 @@ const styles = StyleSheet.create({
   buttonTitle: {
     color: '#fff',
     fontSize: 18,
+  },
+  signup: {
+    marginTop: 16,
+    alignSelf: 'center',
+  },
+  signupText: {
+    fontSize: 16,
   },
 })

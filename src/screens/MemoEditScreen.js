@@ -26,7 +26,7 @@ export default function MemoEditScreen({ navigation }) {
         navigation.state.params.returnMemo(memo)
         navigation.goBack()
       })
-      .catch(error => console.log(error))
+      .catch()
   }
 
   return (
