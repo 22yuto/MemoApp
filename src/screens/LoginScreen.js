@@ -1,24 +1,54 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import firebase from 'firebase'
+import * as SecureStore from 'expo-secure-store'
 import { StackActions, NavigationActions } from 'react-navigation'
 import {
   StyleSheet, View, TextInput, TouchableHighlight, Text, TouchableOpacity,
 } from 'react-native'
+import { Loading } from '../elements/Loading'
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    let unmounted = false;
+
+    (async () => {
+      const emailData = await SecureStore.getItemAsync('email')
+      const passwordData = await SecureStore.getItemAsync('password')
+      firebase.auth().signInWithEmailAndPassword(emailData, passwordData)
+        .then(() => {
+          if (!unmounted) {
+            setIsLoading(false)
+          }
+          navigateToHome()
+        })
+        .catch()
+    })()
+
+    return () => {
+      unmounted = true;
+    }
+  }, [])
+
+  const navigateToHome = () => {
+    const resetAction = StackActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Home' }),
+      ],
+    })
+    navigation.dispatch(resetAction)
+  }
 
   const handleSubmit = () => {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(() => {
-        const resetAction = StackActions.reset({
-          index: 0,
-          actions: [
-            NavigationActions.navigate({ routeName: 'Home' }),
-          ],
-        })
-        navigation.dispatch(resetAction)
+        SecureStore.setItemAsync('email', email)
+        SecureStore.setItemAsync('password', password)
+        navigateToHome()
       })
       .catch()
   }
@@ -29,6 +59,7 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Loading text="ログイン中" isLoading={isLoading} />
       <Text style={styles.title}>ログイン</Text>
       <TextInput
         style={styles.input}
