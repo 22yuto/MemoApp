@@ -5,13 +5,13 @@ import {
 } from 'react-native'
 
 export default function LoginScreen({ navigation }) {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('user@example.com')
+  const [password, setPassword] = useState('password')
 
   const handleSubmit = () => {
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(authResult => {
-        navigation.navigate('Home', { currentUser: authResult.user })
+      .then(() => {
+        navigation.navigate('Home')
       })
       .catch(error => console.log(error))
   }

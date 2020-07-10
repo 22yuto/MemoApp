@@ -8,10 +8,10 @@ export default function MemoCreateScreen({ navigation }) {
   const [body, setBody] = useState('')
 
   function handleSubmit() {
-    const { params } = navigation.state
-    console.log(params)
     const db = firebase.firestore()
-    db.collection(`users/${params.currentUser.uid}/memos`).add({
+    const { currentUser } = firebase.auth()
+
+    db.collection(`users/${currentUser.uid}/memos`).add({
       body,
       createdOn: new Date(),
     })

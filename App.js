@@ -1,20 +1,21 @@
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import firebase from 'firebase'
+import 'firebase/firestore'
+import { decode, encode } from 'base-64'
 import MemoListScreen from './src/screens/MemoListScreen'
 import MemoCreateScreen from './src/screens/MemoCreateScreen'
 import MemoDetailScreen from './src/screens/MemoDetailScreen'
 import MemoEditScreen from './src/screens/MemoEditScreen'
 import LoginScreen from './src/screens/LoginScreen'
 import SignupScreen from './src/screens/SignupScreen'
-
 import ENV from './env.json'
 
-require('firebase/firestore')
-
-console.ignoredYellowBox = [
-  'Remote debugger is in a background tab which may cause apps to perform slowly. Fix this by foregrounding the tab (or opening it in a separate window).',
-];
+// Unhandled promise rejection: ReferenceError: Can't find variable: atob というエラー
+// base-64インストールして下記記載で完治
+// 参考： https://qiita.com/carrydaisuki/items/b64c1e199ab6870d3161
+if (!global.btoa) { global.btoa = encode }
+if (!global.atob) { global.atob = decode }
 
 const firebaseConfig = {
   apiKey: ENV.FIREBASE_API_KEY,
