@@ -38,7 +38,12 @@ export default function MemoDetailScreen({ navigation }) {
         </Text>
       </View>
 
-      <CircleButton name={'\uf303'} color="white" style={styles.editButton} onPress={() => navigation.navigate('MemoEdit')} />
+      <CircleButton
+        name={'\uf303'}
+        color="white"
+        style={styles.editButton}
+        onPress={() => navigation.navigate('MemoEdit', { memo })}
+      />
     </View>
   )
 }
