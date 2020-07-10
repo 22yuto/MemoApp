@@ -1,5 +1,6 @@
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
+import { Platform } from 'react-native'
 import firebase from 'firebase'
 import 'firebase/firestore'
 import { decode, encode } from 'base-64'
@@ -44,6 +45,16 @@ const App = createStackNavigator({
     headerBackTitleVisible: null, // ヘッダーアプリバー左側テキスト有無
     headerStyle: {
       backgroundColor: '#265366',
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.2,
+      shadowRadius: 1,
+      ...Platform.select({
+        android: {
+          height: 80,
+          paddingTop: 20,
+        },
+      }),
     },
     headerTitleStyle: {
       color: '#fff',

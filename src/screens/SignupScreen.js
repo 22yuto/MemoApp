@@ -33,6 +33,7 @@ export default function SignupScreen({ navigation }) {
         autoCapitalize="none"
         autoCorrect={false}
         placeholder="Email Address"
+        underlineColorAndroid="transparent"
       />
       <TextInput
         style={styles.input}
@@ -42,6 +43,7 @@ export default function SignupScreen({ navigation }) {
         autoCorrect={false}
         placeholder="Password"
         secureTextEntry
+        underlineColorAndroid="transparent"
       />
       <TouchableHighlight style={styles.button} onPress={handleSubmit} underlayColor="#c70f66">
         <Text style={styles.buttonTitle}>送信する</Text>

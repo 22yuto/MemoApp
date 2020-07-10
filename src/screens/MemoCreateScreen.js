@@ -28,6 +28,7 @@ export default function MemoCreateScreen({ navigation }) {
         multiline
         value={body}
         onChangeText={text => setBody(text)}
+        textAlignVertical="top"
       />
       <CircleButton name={'\uf00c'} onPress={handleSubmit} />
     </View>

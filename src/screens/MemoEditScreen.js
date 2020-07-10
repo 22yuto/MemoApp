@@ -36,6 +36,8 @@ export default function MemoEditScreen({ navigation }) {
         multiline
         value={memo.body}
         onChangeText={text => setMemo({ ...memo, body: text })}
+        underlineColorAndroid="transparent"
+        textAlignVertical="top"
       />
       <CircleButton name={'\uf00c'} onPress={handlePress} />
     </View>

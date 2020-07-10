@@ -85,6 +85,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   editButton: {
-    top: 80,
+    top: 73,
   },
 })

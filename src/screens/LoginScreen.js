@@ -38,6 +38,7 @@ export default function LoginScreen({ navigation }) {
         autoCapitalize="none"
         autoCorrect={false}
         placeholder="Email Address"
+        underlineColorAndroid="transparent"
       />
       <TextInput
         style={styles.input}
@@ -48,6 +49,7 @@ export default function LoginScreen({ navigation }) {
         autoCorrect={false}
         placeholder="Password"
         secureTextEntry
+        underlineColorAndroid="transparent"
       />
       <TouchableHighlight style={styles.button} underlayColor="#c70f66" onPress={handleSubmit}>
         <Text style={styles.buttonTitle}>ログインする</Text>
